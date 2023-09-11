@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        .card {
+            display: flex;
+         
+          justify-content: space-between;
+          gap: 10px;
+          height: 200px;
+        }
+        .item{
+            
+            padding: 1px solid black ;
+            background-color: aqua;
+            width: 200px;
+            box-shadow: 2px 2px 4px gray;
+            text-align: center;
+
+        }
+        h3{
+            margin-bottom: 100px;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>all of product</h1>
+    <div class="card">
+            <% if (products.length > 0) { %>
+                <% products.forEach(product => { %>
+                 
+                       <div class="item">  
+                          <h3><%= product.name %></h3>
+                    <button><a href="http://localhost:3000/products/<%=product.id%>">show more</a></button>   
+                 </div>
+               
+                <% }) %>
+            <% } else { %>
+                <p>No products available.</p>
+            <% } %> </div>
+    
+
+  
+ 
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width:200vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+      
+         .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: aliceblue;
+            font-weight: bold;
+            width: 50vh;
+            box-shadow: 4px 4px 4px 4px grey;
+            gap: 30px;
+         }
+         p{
+            text-align: center;
+         }
+         button{
+            margin-bottom: 10px;
+            padding: 5px 40px;
+            background-color: aquamarine;
+         }
+
+    </style>
+
+</head>
+<body>
+    <h1>datails produits</h1>
+    
+    <div class="card">
+        <% if (data.products.length > 0) { %>
+            <% data.products.forEach(product => { %>
+                      <h3><%= product.id %></h3>
+                        <p><%= product.name %></p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                             A exercitationem error aperiam placeat nulla.
+                             Aperiam et deleniti animi unde perspiciatis.</p>
+                        <p><%= product.price %></p>
+                        <button>BUY</button>
+           
+            <% }) %>
+        <% } else { %>
+            <p>No products available.</p>
+        <% } %> </div>
+    
+</body>
+</html>
