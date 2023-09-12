@@ -1,16 +1,17 @@
 const express = require('express');
 const app = express();
 const Joi = require('joi');
+app.use("./public",express.static('public', { maxAge: 300000000 }))
 app.set('view engine','ejs');
 
 app.use(log);
 
 let products = [
-    { id: 1, name: 'iPhone 12 Pro', price: 1099.99 },
-    { id: 2, name: 'Samsung Galaxy S21', price: 999.99 },
-    { id: 3, name: 'Sony PlayStation 5', price: 499.99 },
-    { id: 4, name: 'MacBook Pro 16', price: 2399.99 },
-    { id: 5, name: 'DJI Mavic Air 2', price: 799.99 },
+    { id: 1, name: 'iPhone 12 Pro', price: 1099.99,href:"/image/90-angle-cL3y2L0NOMc-unsplash.jpg" },
+    { id: 2, name: 'Samsung Galaxy S21', price: 999.99 ,href:"/image/anh-nhat-uCqMa_s-JDg-unsplash.jpg"},
+    { id: 3, name: 'Sony PlayStation 5', price: 499.99 ,href:"/image/denise-jans-HoqYAnwR-1g-unsplash.jpg" },
+    { id: 4, name: 'MacBook Pro 16', price: 2399.99 ,href:"/image/kevin-bhagat-Co-usQ-kpO0-unsplash.jpg"},
+    { id: 5, name: 'DJI Mavic Air 2', price: 799.99 ,href:"/image/tianyi-ma-WiONHd_zYI4-unsplash.jpg"},
 ];
 
 const PORT = process.env.PORT || 3000;

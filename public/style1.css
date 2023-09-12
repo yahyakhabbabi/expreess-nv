@@ -1,0 +1,31 @@
+body{
+    width:200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: aliceblue;
+    font-weight: bold;
+    width: 50vh;
+    box-shadow: 4px 4px 4px 4px grey;
+    gap: 30px;
+ }
+ p{
+    text-align: center;
+ }
+ button{
+    margin-bottom: 10px;
+    padding: 5px 40px;
+    background-color: aquamarine;
+ }
+ img{
+    width: 200px;
+}
