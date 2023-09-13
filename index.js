@@ -1,7 +1,8 @@
+const { json } = require('body-parser');
 const express = require('express');
 const app = express();
 const Joi = require('joi');
-app.use("./public",express.static('public', { maxAge: 300000000 }))
+app.use(express.static('public', { maxAge: 300000000 }))
 app.set('view engine','ejs');
 
 app.use(log);
@@ -24,11 +25,7 @@ function log(req, res, next) {
 
 app.use(express.json()); 
 
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    const message = err.message || 'Internal Server Error';
-    res.status(statusCode).json({ error: message });
-});
+
 
 app.get('/', log, (req, res) => {
     res.render('home',{title:'home',products});
@@ -43,16 +40,24 @@ app.get('/products/search', log, (req, res) => {
     res.send(`Search Query: ${searchQuery}, Min Price: ${minPrice}, Max Price: ${maxPrice}`);
 });
 
-app.get('/products/:id', (req, res) => {
+app.get('/products/:id', (req, res, next) => {
     const productId = parseInt(req.params.id);
     const product = products.filter(p => p.id === productId);
     const data={
         products:product,
     }
+    
+    if (product.length === 0) {
+        error = new Error('User not found');;
+        error.statusCode = 404;
+        res.render('productdetaills',{title:'home',data,error}); 
+        next(error);
 
-    if (!product) return res.status(404).send('Product not found.');
+      }
+  else{
+    res.render('productdetaills',{title:'home',data});    
 
-    res.render('productdetaills',{title:'home',data});
+  }
     // res.send(product);
 });
 
@@ -105,7 +110,13 @@ app.delete('/products/:id', (req, res) => {
     const deletedProduct = products.splice(productIndex, 1)[0];
     res.send(deletedProduct);
 });
-
+app.use((err, req, res, next) => {
+  
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    
+    res.status(statusCode).json({ error: message });
+});
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
